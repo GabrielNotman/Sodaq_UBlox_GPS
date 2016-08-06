@@ -20,17 +20,16 @@ void setup()
     }
 
     MySerial.begin(57600);
-    do_flash_led(LED_BLUE);
 
     MySerial.println("SODAQ LoRaONE test_gps is starting ...");
 
-    sodaq_gps.init();
+    sodaq_gps.init(GPS_ENABLE);
     sodaq_gps.setDiag(MySerial);
 }
 
 void loop()
 {
-    sodaq_gps.scan();
+    sodaq_gps.scan(120000); // 120s timeout
     MySerial.println("waiting in loop() ...");
     delay(60000);
 }
